@@ -47,6 +47,9 @@ build/
 ###log###
 .allure
 .allure/
+allure-report
+.allure-report
+
 
 ###Properties & Conf ###
 .conf
