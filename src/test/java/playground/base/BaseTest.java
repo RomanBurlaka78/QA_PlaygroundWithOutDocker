@@ -33,7 +33,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     @Parameters("browser")
-    protected void beforeClass(@Optional("firefox") String browserParam) {
+    protected void beforeClass(@Optional("chrome") String browserParam) {
         this.browser = browserParam;
         Arrays.stream(this.getClass().getMethods())
                 .filter(m -> m.getAnnotation(Test.class) != null && m.getAnnotation(Ignore.class) == null)
@@ -49,7 +49,7 @@ public abstract class BaseTest {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--window-size=1920,1080");
-                chromeOptions.addArguments("--headless");
+//                chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":

@@ -13,7 +13,7 @@ public class RatingTest extends BaseTest {
                 .goToPage("Stars Rating Widget" , new RatingPage(getDriver()))
                 .clickAll();
     }
-
+ 
     @Test
     public void testClickRatingStarsNumber() {
         new MainPage(getDriver())
