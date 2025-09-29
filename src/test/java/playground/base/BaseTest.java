@@ -33,8 +33,8 @@ public abstract class BaseTest {
 
     @BeforeClass
     @Parameters("browser")
-    protected void beforeClass(@Optional("chrome") String browserParam) {
-        this.browser = browserParam;
+    protected void beforeClass() {
+        this.browser = "chrome";
         Arrays.stream(this.getClass().getMethods())
                 .filter(m -> m.getAnnotation(Test.class) != null && m.getAnnotation(Ignore.class) == null)
                 .collect(Collectors.toList());
@@ -48,8 +48,9 @@ public abstract class BaseTest {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--window-size=1920,1080");
-//                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless=new");  // "--headless" if older version
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
@@ -63,7 +64,7 @@ public abstract class BaseTest {
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--window-size=1920,1080");
-                edgeOptions.addArguments("--headless");
+//                edgeOptions.addArguments("--headless");
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:

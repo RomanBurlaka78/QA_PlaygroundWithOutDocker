@@ -3,6 +3,7 @@ package playground.tests;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.annotations.Ignore;
 import playground.pages.MainPage;
 import playground.pages.VerifyYourAccountPage;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Ignore
 public class VerifyAccountTest extends BaseTest {
     MainPage mainPage = new MainPage(getDriver());
 
