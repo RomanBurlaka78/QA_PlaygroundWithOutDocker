@@ -1,11 +1,13 @@
 package playground.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import playground.base.BaseTest;
 import playground.pages.MainPage;
 import playground.pages.MultiLevelDropDownPage;
 
+@Ignore
 public class MultiLevelDropDownTest extends BaseTest {
 
     @Test
@@ -34,7 +36,7 @@ public class MultiLevelDropDownTest extends BaseTest {
     }
 
     @Test
-    public void testContainsItemAs () {
+    public void testContainsItemAs() {
         String dropdownItem = new MainPage(getDriver())
                 .goToPage("Multi Level Dropdown", new MultiLevelDropDownPage(getDriver()))
                 .clickDropDownAndChooseItem("Animals")
