@@ -30,6 +30,7 @@ public abstract class BasePage<T>  {
 
     @FindBy(tagName = "title")
     WebElement titlePage;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(getDriver(),this);
