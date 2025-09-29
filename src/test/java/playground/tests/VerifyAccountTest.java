@@ -8,10 +8,6 @@ import playground.pages.VerifyYourAccountPage;
 import org.testng.annotations.Test;
 import playground.base.BaseTest;
 
-import java.time.Duration;
-import java.util.List;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class VerifyAccountTest extends BaseTest {
     MainPage mainPage = new MainPage(getDriver());
@@ -19,7 +15,7 @@ public class VerifyAccountTest extends BaseTest {
 
     @Test
     public void testGetTitle() {
-        new MainPage(getDriver())
+        mainPage
                 .goToPage("Verify Your Account", new VerifyYourAccountPage(getDriver()))
                 .titleShouldBeSameAs("Test Verify Account Flow");
 

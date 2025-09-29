@@ -22,7 +22,6 @@ public class MultiLevelDropDownTest extends BaseTest {
                 .clickDropDownAndChooseItem("Settings")
                 .getDropdownList();
 
-//        Assert.assertTrue(dropdownList.("My Tutorial, HTML, CSS, JavaScript, Awesome!"));
     }
 
     @Test
@@ -32,7 +31,6 @@ public class MultiLevelDropDownTest extends BaseTest {
                 .clickDropDownAndChooseItem("Animals")
                 .getDropdownList();
 
-//        Assert.assertTrue(dropdownList.("My Tutorial, HTML, CSS, JavaScript, Awesome!"));
     }
 
     @Test

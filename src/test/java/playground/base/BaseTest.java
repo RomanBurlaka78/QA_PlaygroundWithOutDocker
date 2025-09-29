@@ -49,7 +49,7 @@ public abstract class BaseTest {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--window-size=1920,1080");
-//                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":

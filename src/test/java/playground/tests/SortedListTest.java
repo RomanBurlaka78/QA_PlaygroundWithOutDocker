@@ -17,4 +17,14 @@ public class SortedListTest extends BaseTest {
         list.forEach(System.out::println);
 
     }
+
+    @Test
+    public void testSortList() {
+        List<String> list = new MainPage(driver)
+                .goToPage("Sortable List", new SortableListPage(getDriver()))
+                .sortList()
+                        .getTableSortedList();
+        list.forEach(System.out::println);
+
+    }
 }
