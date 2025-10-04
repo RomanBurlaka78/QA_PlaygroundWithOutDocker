@@ -1,6 +1,9 @@
 package playground.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +16,7 @@ import org.testng.ITestNGListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +30,7 @@ public abstract class BaseTest {
     protected WebDriver getDriver() {
         return driver;
     }
+
     List<String> optionalBrowser = List.of("firefox", "chrome", "edge");
     Random random = new Random();
     String optionalItem = optionalBrowser.get(random.nextInt(optionalBrowser.size()));
@@ -85,6 +90,13 @@ public abstract class BaseTest {
     public void tearDown(ITestResult testResult) {
         if (testResult.isSuccess()) {
             driver.quit();
+        }
+        if (!testResult.isSuccess()) {
+            Allure.addAttachment(
+                    "screenshot.png",
+                    "image/png",
+                    new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)),
+                    "png");
         } else {
             System.out.println("Failed: " + testResult.getTestClass());
         }
