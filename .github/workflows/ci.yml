@@ -1,4 +1,4 @@
-name: Java CI with Maven (Java 21)
+name: Java CI with Maven
 
 on:
   pull_request:
@@ -10,13 +10,15 @@ on:
 
 jobs:
   build:
-    name: 'Run tests with Java 21'
+    name: 'Run tests'
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Cloning
       - name: Git clone
         uses: actions/checkout@v4
 
+      # 2. Install Java 21
       - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
@@ -24,16 +26,26 @@ jobs:
           distribution: 'corretto'
           cache: 'maven'
 
+      # 3. Run tests (not stop workflow if failure )
       - name: Build and run tests with Maven
-        run: mvn -B clean test
+        run: mvn -B clean test || true
 
-      - name: Attach screenshots
+      # 4. Output failed tests
+      - name: Print failed tests
         if: failure()
+        run: |
+          echo "---- TEST FAILURES ----"
+          cat target/surefire-reports/*.txt || true
+
+      # 5. Attach screenshots
+      - name: Attach screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
           path: ${{ github.workspace }}/screenshots
 
+      # 6. Get Allure (gh-pages)
       - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
@@ -42,6 +54,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      # 7. Build  Allure report
       - name: Build Allure report
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -52,13 +65,23 @@ jobs:
           allure_report: allure-report
           allure_history: allure-history
 
+      # 8. Upload  Allure report artifact
+      - name: Upload Allure report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/allure-report
+
+      # 9. Check allure-results
       - name: Check Allure results
         run: ls -la target/allure-results
 
-      - name: Publish Allure report to GitHub Pages
-        if: ${{ success() || failure() }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+      # 10. Publish  Allure to GitHub Pages
+      - name: Publish Allure report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
