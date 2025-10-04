@@ -28,7 +28,7 @@ jobs:
 
       # 3. Run tests (not stop workflow if failure )
       - name: Build and run tests with Maven
-        run: mvn -B -e clean test || true
+        run: mvn -B -e clean test -Dselenium.headless=true || true
 
       # 4. Output failed tests
       - name: Print failed tests
