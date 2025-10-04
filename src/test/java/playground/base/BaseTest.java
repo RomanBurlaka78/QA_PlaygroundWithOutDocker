@@ -34,7 +34,7 @@ public abstract class BaseTest {
     @BeforeClass
     @Parameters("browser")
     protected void beforeClass() {
-        this.browser = "chrome";
+        this.browser = "firefox";
         Arrays.stream(this.getClass().getMethods())
                 .filter(m -> m.getAnnotation(Test.class) != null && m.getAnnotation(Ignore.class) == null)
                 .collect(Collectors.toList());
