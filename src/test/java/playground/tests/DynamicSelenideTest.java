@@ -15,7 +15,6 @@ public class DynamicSelenideTest  extends BaseSelenideTest {
         Selenide.open("https://qaplayground.dev/apps/dynamic-table/");
         Selenide table = (Selenide) $(By.xpath("tbody[@id= 'tbody']//td"));
 
-        //
     }
 
 }

@@ -54,7 +54,7 @@ public class BudgetTrackerPage extends BasePage<BudgetTrackerPage> {
         return this;
     }
 
-    @Step("assert tottal")
+    @Step("assert total")
     public void  totalShouldBe(String totalSum) {
        Assert.assertEquals(total.getText().replaceAll("[^0-9]", ""), totalSum);
 
