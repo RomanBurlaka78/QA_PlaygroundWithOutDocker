@@ -7,7 +7,7 @@ import playground.base.BaseTest;
 import playground.pages.MainPage;
 import playground.pages.MultiLevelDropDownPage;
 
-@Ignore
+
 public class MultiLevelDropDownTest extends BaseTest {
 
     @Test

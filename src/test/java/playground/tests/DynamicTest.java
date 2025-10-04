@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Ignore
+
 public class DynamicTest extends BaseTest {
 
     @Test

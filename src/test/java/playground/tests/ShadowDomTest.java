@@ -8,7 +8,7 @@ import playground.pages.ShadowDomPage;
 
 public class ShadowDomTest extends BaseTest {
 
-    @Ignore
+
     @Test
     public void testGetPercent() {
         String e = new MainPage(getDriver())

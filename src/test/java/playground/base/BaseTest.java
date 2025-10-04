@@ -97,7 +97,7 @@ public abstract class BaseTest {
         if (testResult.isSuccess()) {
             driver.quit();
         }
-        if (!testResult.isSuccess()) {
+        else if (!testResult.isSuccess()) {
             Allure.addAttachment(
                     "screenshot.png",
                     "image/png",
