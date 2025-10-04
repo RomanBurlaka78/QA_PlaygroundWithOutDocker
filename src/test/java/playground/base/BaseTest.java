@@ -54,7 +54,7 @@ public abstract class BaseTest {
                 chromeOptions.addArguments("--disable-dev-shm-usage");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--user-data-dir=/tmp/chrome_" + System.currentTimeMillis());
+                chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-");
                 driver = new ChromeDriver(chromeOptions);
 
                 break;
