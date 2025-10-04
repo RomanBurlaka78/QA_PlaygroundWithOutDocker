@@ -53,13 +53,17 @@ public abstract class BaseTest {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--headless"); // стабильно на Windows
                 chromeOptions.addArguments("--window-size=1920,1080");
-                chromeOptions.addArguments("--no-sandbox");
-                chromeOptions.addArguments("--disable-dev-shm-usage");
-                chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.currentTimeMillis());
+                chromeOptions.addArguments("--remote-allow-origins=*");
+
+                if (!System.getProperty("os.name").toLowerCase().contains("win")) {
+                    chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.currentTimeMillis());
+                } else {
+                    chromeOptions.addArguments("--user-data-dir=" + System.getProperty("java.io.tmpdir") + "chrome-profile-" + System.currentTimeMillis());
+                }
                 driver = new ChromeDriver(chromeOptions);
 
                 break;
@@ -68,12 +72,14 @@ public abstract class BaseTest {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--width=1920");
                 firefoxOptions.addArguments("--height=1080");
+                firefoxOptions.addArguments("--headless");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--window-size=1920,1080");
+                edgeOptions.addArguments("--headless");
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
