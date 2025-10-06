@@ -39,7 +39,6 @@ public class TagsInputBoxTest extends BaseTest {
                 .goToPage("Tags Input Box", new TagInputBoxPage(getDriver()))
                 .addTag(dataNames);
 
-
     }
 
     @Test
@@ -50,10 +49,6 @@ public class TagsInputBoxTest extends BaseTest {
                 .tagsRemaining();
 
         Assert.assertEquals(number, 4);
-
-
-
-
 
     }
 

@@ -35,7 +35,7 @@ public class VerifyYourAccountPage extends BasePage<VerifyYourAccountPage> {
     public VerifyYourAccountPage enterConfirmationCode() {
         String code = confirmationCode.getText().replaceAll("[^0-9]", " ");
         waitForPageToLoad();
-        inputsCode.stream()
+        inputsCode
                 .forEach(element -> element.sendKeys(code));
 
         return this;
