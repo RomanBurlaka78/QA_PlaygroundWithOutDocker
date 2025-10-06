@@ -38,7 +38,8 @@ public class TagInputBoxPage extends BasePage<TagInputBoxPage>{
     }
     @Step("{number} tags are remaining")
     public int tagsRemaining() {
+        int number = Integer.parseInt(tags.getText().replaceAll("[^0-9]", ""));
 
-        return  Integer.parseInt(tags.getText().replaceAll("[^0-9]", ""));
+        return number ;
     }
 }
