@@ -34,7 +34,7 @@ public class DynamicTablePage extends BasePage<DynamicTablePage> {
         return itemsList;
     }
 
-    @Step("superhero on list should be : [{text}] ")
+    @Step("superhero on list should be : ")
     public DynamicTablePage superHeroShouldBeAs(String text) {
         List<WebElement> e = wait5().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='text-sm font-medium text-white-900']")));
         e.stream()
@@ -48,7 +48,7 @@ public class DynamicTablePage extends BasePage<DynamicTablePage> {
     }
 
 
-    @Step("real name on list should be : [{text}] ")
+    @Step("real name on list should be : ")
     public String realNameShouldBeAs(String text) {
         List<WebElement> e = wait5().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[@class='text-sm font-medium text-white-900']")));
         return e.stream()

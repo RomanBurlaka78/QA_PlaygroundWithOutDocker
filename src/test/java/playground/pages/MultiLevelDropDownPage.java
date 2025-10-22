@@ -44,7 +44,7 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
         System.out.println(dropdownList);
         return dropdownList;
     }
-    @Step("get dropdown list")
+    @Step("get dropdown list: ")
     public String dropdownListContains(String name){
         return settingsList.stream()
                 .filter(element -> element.getText().equals(name))
