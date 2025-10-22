@@ -15,6 +15,8 @@ import org.testng.ITestListener;
 import org.testng.ITestNGListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
+import playground.utils.TestListener;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Listeners(TestListener.class)
 public abstract class BaseTest {
     protected WebDriver driver;
     private String browser;
@@ -29,6 +32,10 @@ public abstract class BaseTest {
 
     protected WebDriver getDriver() {
         return driver;
+    }
+
+    public SoftAssert softAssert() {
+        return  new SoftAssert();
     }
 
     List<String> optionalBrowser = List.of("firefox", "chrome", "edge");
