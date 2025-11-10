@@ -15,20 +15,14 @@ public class BudgetTrackerPage extends BasePage<BudgetTrackerPage> {
 
     @FindBy(xpath = "//button[text()= 'New Entry']")
     WebElement buttonNewEntry;
-
-
     @FindBy(xpath = "//tbody[@class = 'entries']/tr[1]//input[@class ='input input-date']")
     WebElement setDate;
-
     @FindBy(xpath = "//tbody[@class = 'entries']//tr[1]//input[@class= 'input input-description']")
     WebElement setDescription;
-
     @FindBy(xpath = "//tbody[@class = 'entries']//tr[1]//input[@class= 'input input-amount']")
     WebElement setAmount;
     @FindBy(css= "select[class= 'input input-type']")
     WebElement selectType;
-
-//    Select select = new Select(selectType);
     @FindBy(css = "button[class ='delete-entry']")
     WebElement buttonDelete;
     @FindBy(css = "span[class='total']")
@@ -40,7 +34,6 @@ public class BudgetTrackerPage extends BasePage<BudgetTrackerPage> {
         buttonNewEntry.click();
         setDate.sendKeys(date);
         setDescription.sendKeys(description);
-//        select.selectByVisibleText("Expense");
         selectType.click();
         setAmount.clear();
         setAmount.sendKeys(amount);
@@ -57,6 +50,5 @@ public class BudgetTrackerPage extends BasePage<BudgetTrackerPage> {
     @Step("assert total")
     public void  totalShouldBe(String totalSum) {
        Assert.assertEquals(total.getText().replaceAll("[^0-9]", ""), totalSum);
-
     }
 }

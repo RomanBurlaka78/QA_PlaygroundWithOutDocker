@@ -27,6 +27,7 @@ public class MainPage extends BasePage<MainPage> {
     public MainPage getMainPage() {
         return new MainPage(getDriver());
     }
+
     public WebElement showPage(String name) {
         return getDriver().findElement(By.xpath(String.format("//a[@class='card card-course']//h3[text() ='%s']", name)));
 

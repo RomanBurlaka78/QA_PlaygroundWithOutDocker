@@ -47,11 +47,10 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
     }
     @Step("get dropdown list")
     public String getDropdownList(){
-       String dropdownList = settingsList.stream()
+       return settingsList.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList()).toString();
-        System.out.println(dropdownList);
-        return dropdownList;
+
     }
     @Step("get dropdown list contains")
     public String dropdownListContains(String name){
@@ -60,7 +59,6 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
                 .findFirst()
                 .map(WebElement::getText)
                 .orElseThrow(() -> new RuntimeException("Element '" + name + "' not found"));
-
     }
 
 }

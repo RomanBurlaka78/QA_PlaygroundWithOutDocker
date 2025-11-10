@@ -42,7 +42,7 @@
             </run>
         </groups>
         <classes>
-            <class name="playground.tests.PlayGroundMainTest" />
+            <class name="playground.tests.VerifyAccountTest" />
         </classes>
     </test>
 </suite>
