@@ -34,9 +34,7 @@ public class CoveredElementsPage extends  BasePage<CoveredElementsPage>{
     }
     @Step("text of paragraph shouldBe : {info}")
     public void textShouldBeSameAs(String  info) {
-
         Assert.assertEquals(paragraph.getText(),info);
-        System.out.println(paragraph.getText());
     }
 
 
