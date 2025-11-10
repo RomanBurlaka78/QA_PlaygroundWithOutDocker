@@ -9,6 +9,7 @@ import playground.base.BaseTest;
 import playground.pages.MainPage;
 import playground.pages.RightClickMenuPage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Listeners(playground.utils.TestListener.class)
@@ -37,7 +38,7 @@ public class RightClickMenuTest extends BaseTest {
                 .clickContextMenu()
                 .getListOfContextMenu();
 
-        Assert.assertEquals(list, List.of());
+        Assert.assertEquals(list, List.of("Preview", "Get Link", "Rename", "Delete", "Setting"), "Not contains");
 
         System.out.println(list);
     }

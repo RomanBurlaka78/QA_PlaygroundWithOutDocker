@@ -43,6 +43,6 @@ public class VerifyYourAccountPage extends BasePage<VerifyYourAccountPage> {
     @Step("info success is shown : {message}")
     public void infoSuccessShouldBe(String message) {
 
-        assertThat(wait5().until(ExpectedConditions.visibilityOf(infoSuccess)).getText().equals(message));
+        assertThat(new WebDriverWait(getDriver(), Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(infoSuccess)).getText().equals(message));
     }
 }

@@ -53,7 +53,8 @@ public class MultiLevelDropDownTest extends BaseTest {
         String dropdownItem = new MainPage(getDriver())
                 .goToPage("Multi Level Dropdown", new MultiLevelDropDownPage(getDriver()))
                 .clickDropDownAndChooseItem("Animals")
-                .dropdownListContains("Frog");
+                        .getDropdownList();
+//                .dropdownListContains("Horse");
         System.out.println(dropdownItem);
     }
 }

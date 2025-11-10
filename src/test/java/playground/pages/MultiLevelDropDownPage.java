@@ -59,7 +59,6 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
                 .findFirst()
                 .map(WebElement::getText)
                 .orElseThrow(() -> new RuntimeException("Element '" + name + "' not found"));
-
     }
 
 }
