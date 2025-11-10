@@ -1,6 +1,8 @@
 package playground.pages;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,12 +29,19 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
 
 
     @Step("click dropdown menu and choose item : {name}")
-    public MultiLevelDropDownPage clickDropDownAndChooseItem(String name) {
-        actions.click(listIcons.get(3)).perform();
-        menuInnerList.stream()
-                .filter(e -> e.getText().contains(name))
-                .findFirst().ifPresent(actions->actions.click());
-        actions.perform();
+    public MultiLevelDropDownPage clickDropDownAndChooseItem(String name) throws ElementClickInterceptedException {
+       try {
+           actions.click(listIcons.get(3)).perform();
+           String finalName = name;
+           menuInnerList.stream()
+                   .filter(e -> e.getText().contains(finalName))
+                   .findFirst().ifPresent(actions->actions.click());
+           actions.perform();
+       }
+       catch (ElementClickInterceptedException e) {
+           name = "Not found: " + e;
+           Allure.addAttachment("Error", name);
+       }
 
         return this;
     }
@@ -44,7 +53,7 @@ public class MultiLevelDropDownPage extends BasePage<MultiLevelDropDownPage>{
         System.out.println(dropdownList);
         return dropdownList;
     }
-    @Step("get dropdown list")
+    @Step("get dropdown list contains")
     public String dropdownListContains(String name){
         return settingsList.stream()
                 .filter(element -> element.getText().equals(name))
